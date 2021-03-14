@@ -14,8 +14,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
 @Table(name = "chat_user")
+@Getter
+@Setter
+@ToString
 public class Chat {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,37 +35,6 @@ public class Chat {
 	private ChatMessages chatMessages;
 
 	@ElementCollection(targetClass = Integer.class)
-	private List<ChatMessages> messageList = new ArrayList<ChatMessages>();
+	private List<ChatMessages> messageList = new ArrayList<>();
 
-	public ChatMessages getChatMessages() {
-		return chatMessages;
-	}
-
-	public void setChatMessages(ChatMessages chatMessages) {
-		this.chatMessages = chatMessages;
-	}
-
-	public List<ChatMessages> getMessageList() {
-		return messageList;
-	}
-
-	public void setMessageList(List<ChatMessages> messageList) {
-		this.messageList = messageList;
-	}
-
-	public String getUserId() {
-		return userId;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
 }

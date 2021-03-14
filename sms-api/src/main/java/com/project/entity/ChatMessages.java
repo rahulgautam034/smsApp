@@ -12,8 +12,15 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
 @Table(name = "chat_messages")
+@Getter
+@Setter
+@ToString
 public class ChatMessages {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,53 +37,5 @@ public class ChatMessages {
 
 	@OneToOne(mappedBy = "chatMessages", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Chat chat;
-
-	public Chat getChat() {
-		return chat;
-	}
-
-	public void setChat(Chat chat) {
-		this.chat = chat;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public String getTo() {
-		return to;
-	}
-
-	public void setTo(String to) {
-		this.to = to;
-	}
-
-	public String getFrom() {
-		return from;
-	}
-
-	public void setFrom(String from) {
-		this.from = from;
-	}
-
-	public Date getEventAt() {
-		return eventAt;
-	}
-
-	public void setEventAt(Date eventAt) {
-		this.eventAt = eventAt;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
 
 }

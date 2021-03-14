@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.entity.Chat;
+import com.project.model.ChatModel;
 import com.project.repository.ChatRepository;
-
-import comm.project.modal.ChatModal;
 
 @Service
 public class ChatService {
@@ -16,27 +15,39 @@ public class ChatService {
 	@Autowired
 	ChatRepository chatRepository;
 
-	public Chat save(ChatModal chatModal) {
+	/**
+	 * 
+	 * @param chatModal
+	 * @return
+	 */
+	public Chat save(ChatModel chatModal) {
 		Chat chat = new Chat();
 		chat.setUserId(chatModal.getUserId());
 		chat.setChatMessages(chatModal.getChatMessages());
-		Chat ch = chatRepository.save(chat);
-		return ch;
+		return chatRepository.save(chat);
 
 	}
 
-	public ChatModal getChat(String userId) {
-		ChatModal chatModal = new ChatModal();
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 */
+	public ChatModel getChat(String userId) {
+		ChatModel chatModel = new ChatModel();
 		Chat chat = chatRepository.findByUserId(userId);
-		chatModal.setMessageList(chat.getMessageList());
-		chatModal.setUserId(chat.getUserId());
+		chatModel.setMessageList(chat.getMessageList());
+		chatModel.setUserId(chat.getUserId());
 
-		return chatModal;
+		return chatModel;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public List<Chat> getChatOfAllUser() {
-		List<Chat> chat = chatRepository.findAll();
-		return chat;
+		return chatRepository.findAll();
 	}
 
 }
