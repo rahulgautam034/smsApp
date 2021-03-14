@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.entity.Chat;
+import com.project.model.ChatModel;
 import com.project.service.ChatService;
-
-import comm.project.modal.ChatModal;
 
 @RestController
 @RequestMapping("api")
@@ -23,21 +22,31 @@ public class ChatController {
 	@Autowired
 	ChatService chatService;
 
+	/**
+	 * 
+	 * @param chatModal
+	 * @return
+	 */
 	@PostMapping("/save")
-	public ResponseEntity<Chat> save(@RequestBody ChatModal chatModal) {
+	public ResponseEntity<Chat> save(@RequestBody ChatModel chatModal) {
 		try {
 			Chat chat = chatService.save(chatModal);
 			return new ResponseEntity<>(chat, HttpStatus.OK);
 
 		} catch (Exception e) {
-			return new ResponseEntity<Chat>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	}
 
+	/**
+	 * 
+	 * @param userId
+	 * @return
+	 */
 	@GetMapping("/user-chat")
 	public ResponseEntity<?> getSingleUserChat(String userId) {
 		try {
-			ChatModal chatModal = chatService.getChat(userId);
+			ChatModel chatModal = chatService.getChat(userId);
 			return new ResponseEntity<>(chatModal, HttpStatus.OK);
 
 		} catch (Exception e) {
@@ -45,6 +54,10 @@ public class ChatController {
 		}
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	@GetMapping("/all-user-chat")
 	public ResponseEntity<?> getAllUserChat() {
 		try {
