@@ -24,6 +24,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Chat {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
