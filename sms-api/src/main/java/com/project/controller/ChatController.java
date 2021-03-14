@@ -2,7 +2,6 @@ package com.project.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,18 +18,21 @@ import com.project.service.ChatService;
 @RequestMapping("api")
 public class ChatController {
 
-	@Autowired
-	ChatService chatService;
+	private ChatService chatService;
+
+	public ChatController(ChatService chatService) {
+		this.chatService = chatService;
+	}
 
 	/**
 	 * 
-	 * @param chatModal
+	 * @param chatModel
 	 * @return
 	 */
 	@PostMapping("/save")
-	public ResponseEntity<Chat> save(@RequestBody ChatModel chatModal) {
+	public ResponseEntity<Chat> save(@RequestBody ChatModel chatModel) {
 		try {
-			Chat chat = chatService.save(chatModal);
+			Chat chat = chatService.save(chatModel);
 			return new ResponseEntity<>(chat, HttpStatus.OK);
 
 		} catch (Exception e) {

@@ -12,6 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -27,11 +30,16 @@ public class ChatMessages {
 	private long id;
 
 	@Column(name = "message_to")
-	private String to;
+	private String messageTo;
 	@Column(name = "message_from")
-	private String from;
+	private String messageFrom;
 
-	private Date eventAt = new Date();
+	@CreationTimestamp
+	@Column(name = "event_at", updatable = false)
+	private Date eventAt;
+
+	@UpdateTimestamp
+	private Date updatedAt;
 
 	private String message;
 

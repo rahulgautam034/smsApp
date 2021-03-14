@@ -3,8 +3,6 @@ package com.project.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.project.entity.ChatMessages;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,9 +17,9 @@ import lombok.ToString;
 public class ChatModel {
 
 	private String userId;
-	private ChatMessages chatMessages;
+	private ChatMessagesModel chatMessages;
 	private String to;
 	private String from;
 	private String message;
-	private List<ChatMessages> messageList = new ArrayList<>();
+	private List<ChatMessagesModel> messageList = new ArrayList<>();
 }
